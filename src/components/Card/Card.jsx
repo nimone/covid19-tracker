@@ -19,7 +19,7 @@ function Cards({ title, description, value, lastUpdate, type }) {
 		<Grid item xs={12} md={3} component={MaterialCard} className={cardClass}>
 			<CardContent>
 				<Typography color="textSecondary" gutterBottom>{ title }</Typography>
-				<Typography variant="h5">{ value }</Typography>
+				<Typography variant="h5">{ value.toLocaleString() }</Typography>
 				<Typography color="textSecondary">
 					{ new Date(lastUpdate).toDateString() }
 				</Typography>
