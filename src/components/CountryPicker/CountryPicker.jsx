@@ -5,19 +5,23 @@ import styles from './CountryPicker.module.css'
 
 function CountryPicker({ countryList, setCountry }) {
 	const changeCountry = e => {
-		setCountry(e.target.value)
+		const selectedCountry = e.target.value
+
+		if (selectedCountry === 'global') {
+			setCountry(null)
+		} else {
+			setCountry(selectedCountry)
+		}
 	}
 	return (
-		<div>
-			<FormControl className={styles.fromControl}>
-				<NativeSelect defaultValue="" onChange={changeCountry}>
-					<option value="global">Global</option>
-					{countryList.map(country => (
-						<option key={country.iso3} value={country.name}>{country.name}</option>
-					))}
-				</NativeSelect>
-			</FormControl>
-		</div>
+		<FormControl className={styles.formControl}>
+			<NativeSelect defaultValue="" onChange={changeCountry}>
+				<option value="global">Global</option>
+				{countryList.map(country => (
+					<option key={country.name} value={country.name}>{country.name}</option>
+				))}
+			</NativeSelect>
+		</FormControl>
 	)
 }
 export default CountryPicker
