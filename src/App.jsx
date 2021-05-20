@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import styles from "./App.module.css"
 
-import { CardList, Chart, CountryPicker } from "./components"
+import { CardList, Chart, CountryPicker, Loader } from "./components"
 import useFetch from "./hooks/useFetch"
 
 const url = "https://covid19.mathdro.id/api"
@@ -18,7 +18,6 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>COVID-19 Tracker</h1>
-      {mainData.isLoading && <div>Loading...</div>}
       {mainData.data && <CardList data={mainData.data} />}
       {countries.data && (
         <CountryPicker
@@ -33,6 +32,7 @@ function App() {
           country={currentCountry} 
         />
       )}
+      {(mainData.isLoading || dailyData.isLoading || countries.isLoading) && <Loader />}
     </div>
   );
 }
