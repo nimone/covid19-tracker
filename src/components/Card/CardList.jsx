@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core'
 
 function CardList({ data: { confirmed, recovered, deaths, lastUpdate }}) {
 	return (
-		<div style={{ margin: "50px 0" }}>
+		<div style={{ margin: "50px 0", width: "100%"}}>
 			<Grid container spacing={3} justify="center">			
 				<Card 
 					title="Infected" 
