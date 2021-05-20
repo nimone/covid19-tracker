@@ -1,31 +1,42 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-function useFetch(url) {
+function useFetch(url, options={}) {
+	const cache = useRef({})
 	const [data, setData] = useState(null)
 	const [isLoading, setIsLoading] = useState(true)
 	const [error, setError] = useState(null)
 
-	useEffect(() => {
+	useEffect(() => {		
+		if (!url) return
 		const abortController = new AbortController()
 
-		fetch(url, { signal: abortController.signal })
-			.then(res => {
-				if (!res.ok) throw Error("Could not fetch from the resource")
-				return res.json()
-			})
-			.then(data => {
-				setData(data)
+		const fetchData = async () => {
+			if (cache.current[url]) {
+				setData(cache.current[url])
 				setIsLoading(false)
 				setError(null)
-			})
-			.catch(err => {
-				if (err.name === "AbortError") {
-					console.log("Fetch Aborted!")
-				} else {
-					setError(err.message)
+			} else {
+				try {
+					const res = await fetch(url, { ...options, signal: abortController.signal })
+					if (!res.ok) throw Error("Could not fetch from the resource")
+					const fetchedData = await res.json()
+
+					cache.current[url] = fetchedData
+					setData(fetchedData)
 					setIsLoading(false)
+					setError(null)
+				} catch {
+					if (err.name === "AbortError") {
+						console.log("Fetch Aborted!")
+					} else {
+						setError(err.message)
+						setIsLoading(false)
+					}
 				}
-			})
+			}
+		}
+
+		fetchData()
 
 		return () => abortController.abort()
 	}, [url])
