@@ -1,4 +1,6 @@
-# COVID-19 Tracker
+# [COVID-19 Tracker](https://covid19-tracker.pages.dev/)
+This app tracks the numbers & trends of people infected, recovered and deceased due to COVID-19 pandemic all over the globe.
+
 ![Covid19-tracker screenshot](https://i.ibb.co/6X93nXQ/covid19-tracker-ss.png)
 
 ---
@@ -23,7 +25,7 @@ npm run build && npm run serve
 ```
 > Or, run a development server using `npm run dev`
 
-
+---
 ## Data Sources
-Data is provided from following api/sources:
+The data for this project is generously provided by the following api/sources:
 - [Covid19 Api by mathdroid](https://covid19.mathdro.id/api)
