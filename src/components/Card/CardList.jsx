@@ -1,10 +1,14 @@
 import React from 'react'
 import Card from './Card'
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
+import styles from './CardList.module.css'
 
 function CardList({ data: { confirmed, recovered, deaths, lastUpdate }}) {
 	return (
-		<div style={{ marginBottom: "50px", width: "100%"}}>
+		<div className={styles.container}>
+			<Typography className={styles.lastupdate} color="textSecondary">
+				Last Updated on { new Date(lastUpdate).toDateString() }
+			</Typography>
 			<Grid container spacing={3} justify="center">			
 				<Card 
 					title="Infected" 

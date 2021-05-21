@@ -20,10 +20,7 @@ function Cards({ title, description, value, lastUpdate, type }) {
 			<CardContent>
 				<Typography color="textSecondary" gutterBottom>{ title }</Typography>
 				<Typography variant="h5">{ value.toLocaleString() }</Typography>
-				<Typography color="textSecondary">
-					{ new Date(lastUpdate).toDateString() }
-				</Typography>
-				<Typography variant="body2">{ description }</Typography>
+				<Typography variant="body2" color="textSecondary">{ description }</Typography>
 			</CardContent>
 		</Grid>
 	)
