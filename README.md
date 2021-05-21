@@ -1,5 +1,5 @@
 # COVID-19 Tracker
-[img]https://i.ibb.co/HDFypVF/covid19-tracker-ss.png[/img]
+![Covid19-tracker screenshot](https://i.ibb.co/HDFypVF/covid19-tracker-ss.png)
 
 ## Run Locally
 1. `git clone https://github.com/nimone/covid19-tracker && cd covid19-tracker`
