@@ -18,13 +18,13 @@ function App() {
   return (
     <div className={styles.App}>
       <h1>COVID-19 Tracker</h1>
-      {mainData.data && <CardList data={mainData.data} />}
       {countries.data && (
         <CountryPicker
           countryList={countries.data.countries}
           setCountry={setCurrentCountry}
         />
       )}
+      {mainData.data && <CardList data={mainData.data} />}
       {(dailyData.data && mainData.data) && (
         <Chart
           lineData={dailyData.data} 
